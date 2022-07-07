@@ -15,7 +15,7 @@ use std::{
 // The state machine is parameterized by the state
 // The use of #[repr(transparent)] ensures that the layout of Channel is stable across transmutations of the marker type.
 #[repr(transparent)]
-struct Channel<State> {
+pub struct Channel<State> {
 	chan:   (Sender<String>, Receiver<String>),
 	_state: PhantomData<State>,
 }

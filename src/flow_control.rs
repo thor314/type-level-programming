@@ -96,7 +96,6 @@ fn test_security() {
 	// assert_eq!(v.get(0), 1); // can't read any more, compiler error
 	let w = HighSecWitness::login();
 	assert_eq!(*v.get_secure(1, w), 2); // can read after login
-	todo!();
 }
 
 mod flow_control_alt {
@@ -205,6 +204,5 @@ mod flow_control_alt {
 		// assert_eq!(v.get(0), 1); // can't read any more, compiler error
 		let w = HighSecWitness::login();
 		assert_eq!(*v.get_secure(1, w), 2); // can read after login
-		todo!();
 	}
 }
