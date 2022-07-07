@@ -44,7 +44,7 @@ fn reverse<T: Clone>(xs: &[T]) -> Vec<T> {
 }
 
 // fuzz, declare quickcheck on any argument implementing Arbitrary
-#[quickcheck] 
+#[quickcheck]
 fn prop(xs: Vec<u32>) -> bool {
 	// init_test_logs();
 	// log::warn!("{xs:?}");

@@ -10,8 +10,8 @@ use validator::{Validate, ValidationError};
 
 mod cli;
 mod error;
-mod utils;
 mod sendreceive;
+mod utils;
 
 fn main() -> Result<()> {
 	use clap::Parser;
