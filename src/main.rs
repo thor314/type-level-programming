@@ -10,7 +10,9 @@ use validator::{Validate, ValidationError};
 
 mod cli;
 mod error;
+mod flow_control;
 mod sendreceive;
+mod session_types;
 mod utils;
 
 fn main() -> Result<()> {
