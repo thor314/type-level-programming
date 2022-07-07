@@ -1,5 +1,5 @@
 //! A batteries-included binary template.
-
+// https://willcrichton.net/notes/type-level-programming/
 // TODO: remove these when ready
 #![allow(unused_imports)]
 #![allow(unused_variables)]
@@ -11,6 +11,7 @@ use validator::{Validate, ValidationError};
 mod cli;
 mod error;
 mod utils;
+mod sendreceive;
 
 fn main() -> Result<()> {
 	use clap::Parser;
