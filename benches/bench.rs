@@ -8,8 +8,8 @@ use std::{thread, time};
 use iai::black_box as bb;
 
 fn f(millis: u64) {
-	let sleep_time = time::Duration::from_millis(millis);
-	thread::sleep(sleep_time);
+  let sleep_time = time::Duration::from_millis(millis);
+  thread::sleep(sleep_time);
 }
 
 fn bench1() { f(bb(1)) }

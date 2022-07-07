@@ -40,5 +40,5 @@ max_width     = 100 # default: 100
 # format_strings = true # wrap strings at `max_length`
 
 # tabs and spaces
-tab_spaces = 2   # 2 > 4, it's just math.
-hard_tabs  = true # tabs > spaces
+tab_spaces = 2   # 2 > 4, just math.
+hard_tabs  = false # (def: false) use spaces, not tabs

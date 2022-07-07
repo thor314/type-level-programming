@@ -1,6 +1,6 @@
 // Let's implement session types, because I had nothing else to do today
 
-use std::marker::PhantomData;
+use std::{intrinsics::transmute, marker::PhantomData};
 
 // A grammar:
 /// Send message type T, first choice in Offer. Send either a Ping or a Receive Ping|Goto<Z>
@@ -24,22 +24,62 @@ struct Close;
 struct Ping;
 type PingServer = Label<Offer<Send<Ping, Recv<Ping, Goto<Z>>>, Close>>;
 
-// Without an implementation of `Chan`, this gets very hard to follow. Leave here.
-// fn example_ping_server() {
-//   let (c, _): (Chan<(), PingServer>,
-//                Chan<(), Dual<PingServer>) = Chan::new();
-//   let mut c: Chan<(Offer<_,_>, ()), Offer<_,_>> = c.label();
-//   loop {
-//     c = match c.offer() {
-//       Branch::Left(c) => {
-//         let c: Chan<_, Recv<_,_>> = c.send(Ping);
-//         let (c, Ping): (Chan<_, Goto<_>>, _) = c.recv();
-//         c.goto()
-//       },
-//       Branch::Right(c) => {
-//         c.close();
-//         return;
+use std::sync::mpsc::{self, channel, Receiver, Sender};
+
+/// P: Receiver or Sender
+struct Chan<Env, P>(Sender<Box<u8>>, Receiver<Box<u8>>, PhantomData<(Env, P)>);
+
+impl<Env, P> Chan<Env, P> {
+  fn new() -> (Self, PingServer) {
+    let (tx, rx) = channel();
+    (Self(tx, rx, PhantomData), Label::new())
+  }
+}
+
+impl<S> Label<S> {
+  fn new() -> Self { Self(PhantomData) }
+}
+// impl<E, P, Q> Chan<E, Offer<P, Q>> {
+//   fn offer(self) -> Branch<Chan<E, P>, Chan<E, Q>> {
+//     unsafe {
+//       let b = read_chan(&self);
+//       if b {
+//         Branch::Left(transmute(self))
+//       } else {
+//         Branch::Right(transmute(self))
 //       }
 //     }
 //   }
 // }
+
+// impl<Env, T, S> Chan<Env, Recv<T, S>>
+// where T: std::marker::Send + 'static
+// {
+//   pub fn recv(self) -> (Chan<Env, S>, T) {
+//     unsafe {
+//       // read method not implemented
+//       let x = self.read_chan();
+//       (transmute(self), x)
+//     }
+//   }
+// }
+
+fn example_ping_server() {
+  //   let (c, _): (Chan<(), PingServer>,
+  //                Chan<(), Dual<PingServer>) = Chan::new();
+  //   let (c, _)= Chan::new();
+  //   let mut c: Chan<(Offer<_,_>, ()), Offer<_,_>> = c.label();
+  //   loop {
+  //     c = match c.offer() {
+  //       Branch::Left(c) => {
+  //         let c: Chan<_, Recv<_,_>> = c.send(Ping);
+  //         let (c, Ping): (Chan<_, Goto<_>>, _) = c.recv();
+  //         c.goto()
+  //       },
+  //       Branch::Right(c) => {
+  //         c.close();
+  //         return;
+  //       }
+  //     }
+  //   }
+}
