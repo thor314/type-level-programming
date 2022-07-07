@@ -22,13 +22,7 @@ struct S<N>(PhantomData<N>); // Peano encoding for natural numbers
 struct Close;
 
 struct Ping;
-type PingServer =
-  Label<
-    Offer<
-      Send<Ping,
-        Recv<Ping,
-        Goto<Z>>>,
-      Close>>;
+type PingServer = Label<Offer<Send<Ping, Recv<Ping, Goto<Z>>>, Close>>;
 
 // Without an implementation of `Chan`, this gets very hard to follow. Leave here.
 // fn example_ping_server() {

@@ -1,5 +1,6 @@
 // 1. For each acceptable state, make a unique unit struct. For clarity, I'm going to hold them in
-// their own mod, to make this look like an Enum. Using an Enum itself doesn't appear possible, unfortunately. 
+// their own mod, to make this look like an Enum. Using an Enum itself doesn't appear possible,
+// unfortunately.
 mod states {
 	pub(crate) struct Receiving;
 	pub(crate) struct Sending;
@@ -10,10 +11,10 @@ use std::{
 	sync::mpsc::{self, channel, Receiver, Sender},
 };
 
-
 // 2. Make a state-holder struct, parameterized my state structs
 // The state machine is parameterized by the state
-// The use of #[repr(transparent)] ensures that the layout of Channel is stable across transmutations of the marker type.
+// The use of #[repr(transparent)] ensures that the layout of Channel is stable across
+// transmutations of the marker type.
 #[repr(transparent)]
 pub struct Channel<State> {
 	chan:   (Sender<String>, Receiver<String>),
