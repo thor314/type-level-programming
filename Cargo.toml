@@ -10,7 +10,7 @@ license = "Unlicense OR MIT"
 [dependencies]
 
 # Binary
-dotenv = "0.15" # .env file parsing
+dotenv = "0.15"                                         # .env file parsing
 clap = { version = "3.2", features = ["derive"] }
 validator = { version = "0.16", features = ["derive"] }
 
@@ -21,14 +21,14 @@ cfg-if = { version = "1.0.0" } # branching compilation logic
 serde = { version = "1", features = ["derive"], optional = true }
 serde_json = { version = "1.0", optional = true }
 rand = { version = "0.8", optional = true }
-cute =  { version ="0.3", optional = true } # python-like list comprehensions
+cute = { version = "0.3", optional = true }                       # python-like list comprehensions
 
 # Error Handling
 thiserror = "1.0"
 anyhow = "1.0"
 
 # Logging
-log = "0.4" 
+log = "0.4"
 env_logger = "0.9"
 
 # Rhai scripting
@@ -36,16 +36,19 @@ env_logger = "0.9"
 # rhai = { version = "1.8.0", features = [ "sync", "unchecked", "only_i32", "no_float", "no_module", "no_function" ] }
 
 [features]
-some_feature = ["dep:serde","dep:serde_json"] # use this to use optional dependencies
+some_feature = [
+  "dep:serde",
+  "dep:serde_json",
+] # use this to use optional dependencies
 
 [dev-dependencies]
 # Bench
 criterion = "0.3"
-iai = "0.1" # criterion alternative
+iai = "0.1"       # criterion alternative
 # Testing utils
 rstest = "0.15"
 quickcheck = "1.0"
-quickcheck_macros = "1" # derive 
+quickcheck_macros = "1"                                # derive 
 arbitrary = { version = "1.1", features = ["derive"] }
 
 [[test]]
