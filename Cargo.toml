@@ -11,7 +11,7 @@ license = "Unlicense OR MIT"
 
 # Binary
 dotenv = "0.15"                                         # .env file parsing
-clap = { version = "3.2", features = ["derive"] }
+clap = { version = "4.0", features = ["derive"] }
 validator = { version = "0.16", features = ["derive"] }
 
 # Common
