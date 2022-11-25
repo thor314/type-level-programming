@@ -29,7 +29,7 @@ anyhow = "1.0"
 
 # Logging
 log = "0.4"
-env_logger = "0.9"
+env_logger = "0.10"
 
 # Rhai scripting
 # https://rhai.rs/book/start/features.html
