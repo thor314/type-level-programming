@@ -2,21 +2,22 @@
 # Note: this is not very secure. 
 # Other note: Most actions that claim to do this are broken, many hour spent here
 # https://github.com/marketplace/actions/github-action-merge-dependabot
-name: automerge
-on: [push, pull_request]
+#
+# name: automerge
+# on: [push, pull_request]
 
-jobs:
-  automerge:
-    runs-on: ubuntu-latest
+# jobs:
+#   automerge:
+#     runs-on: ubuntu-latest
 
-    permissions:
-      pull-requests: write
-      contents: write
+#     permissions:
+#       pull-requests: write
+#       contents: write
 
-    steps:
-      - uses: fastify/github-action-merge-dependabot@v3.0.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+#     steps:
+#       - uses: fastify/github-action-merge-dependabot@v3.0.0
+#         with:
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
 
 # broke as hecc
 # name: Dependabot auto-merge
